@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @student.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <a href="mailto:<%=@student.email%>"><%=@student.email%></a>
+</p>
+
+<p>
+  <strong>Major:</strong>
+  <%= @student.major %>
+</p>
+<p>
+	<ol>
+		<%if @student.courses.empty?%>
+			<h2>not enrolled to any courses yet</h2>
+		<%else%>
+			<H2>COURSES ENROLLED IN</H2>
+			<% @student.courses.each do |course|%>
+				<li><%= link_to course.name,course_path(course)%>---<%=link_to course.instructor.name,instructor_path(course.instructor)%></li>
+			<%end%>
+		<%end%>
+	</ol>
+</p>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>
